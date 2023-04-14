@@ -2,8 +2,9 @@ import React from "react";
 
 const Login = () => {
   return (
-    <div>
-      <div>
+    <div className="">
+      <form className="flex flex-col min-h-[calc(100vh-160px)] items-center justify-center gap-3">
+        <h1>Please Login</h1>
         <input
           type="text"
           placeholder="Your Name"
@@ -21,8 +22,8 @@ const Login = () => {
           placeholder="Your password"
           className="input input-bordered input-accent w-full max-w-xs"
         />
-      </div>
-      <button className="btn btn-outline">Login</button>
+        <button className="btn btn-outline w-full max-w-xs">Login</button>
+      </form>
     </div>
   );
 };

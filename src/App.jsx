@@ -11,7 +11,7 @@ function App() {
   return (
     <div>
       <Header />
-      <div>
+      <div className="min-h-[calc(100vh-200px)]">
         <Outlet></Outlet>
       </div>
     </div>

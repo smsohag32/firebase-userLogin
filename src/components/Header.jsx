@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <div className="flex justify-between h-20 items-center">
+    <div className="flex justify-between shadow-lg py-2 items-center h-20 px-16">
       <h1>Fire Base Integrations</h1>
       <ul className="flex gap-5">
         <Link to="/">Home</Link>
