@@ -4,27 +4,30 @@ import app from "../Firebase/firebase.config";
 
 const auth = getAuth(app);
 const SingUp = () => {
+  const [user, setUser] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [error, setError] = useState("");
   const handleSubmit = (event) => {
     // page refresh
     event.preventDefault();
     // collect data
+
     const email = event.target.email.value;
     const password = event.target.password.value;
     // create user in firebase
-
+    console.log(email, password);
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         const loggedUser = result.user;
-        console.log(loggedUser);
+        setUser(loggedUser);
       })
-      .then((error) => {
-        console.error(error);
+      .catch((error) => {
+        setError(error.message);
       });
   };
 
+  console.log(user, error);
   //   const handleEmailChange = (event) => {
   //     setEmail(event.target.value);
   //   };
@@ -57,6 +60,7 @@ const SingUp = () => {
           placeholder="Your password"
           className="input input-bordered input-accent w-full max-w-xs"
         />
+        <p>{error}</p>
 
         <input
           className="btn btn-primary"
