@@ -8,19 +8,24 @@ const SingUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const handleSubmit = (event) => {
     // page refresh
     event.preventDefault();
     // collect data
 
+    setSuccess("");
     const email = event.target.email.value;
     const password = event.target.password.value;
     // create user in firebase
     console.log(email, password);
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
+        setError("");
         const loggedUser = result.user;
         setUser(loggedUser);
+        event.target.reset();
+        setSuccess("Your Account created successfully done !!");
       })
       .catch((error) => {
         setError(error.message);
@@ -60,7 +65,8 @@ const SingUp = () => {
           placeholder="Your password"
           className="input input-bordered input-accent w-full max-w-xs"
         />
-        <p>{error}</p>
+        <p className="text-red-900">{error}</p>
+        <p className="text-green-400">{success}</p>
 
         <input
           className="btn btn-primary"
