@@ -14,11 +14,17 @@ const SingUp = () => {
     event.preventDefault();
     // collect data
 
+    setError("");
     setSuccess("");
     const email = event.target.email.value;
     const password = event.target.password.value;
     // create user in firebase
     console.log(email, password);
+    // validation check in regular ex
+    if (!/(?=.*?[A-Z])/.test(password)) {
+      setError("please type one uppercase letter");
+      return;
+    }
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         setError("");
