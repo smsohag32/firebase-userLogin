@@ -1,6 +1,11 @@
 import React, { useState } from "react";
-import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  sendEmailVerification,
+} from "firebase/auth";
 import app from "../Firebase/firebase.config";
+import { Link } from "react-router-dom";
 
 const auth = getAuth(app);
 const SingUp = () => {
@@ -9,22 +14,24 @@ const SingUp = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+
   const handleSubmit = (event) => {
-    // page refresh
+    // page refresh handle
     event.preventDefault();
-    // collect data
 
     setError("");
     setSuccess("");
+    // collect input data
     const email = event.target.email.value;
     const password = event.target.password.value;
-    // create user in firebase
     console.log(email, password);
-    // validation check in regular ex
+    // validation check in regEx
     if (!/(?=.*?[A-Z])/.test(password)) {
       setError("please type one uppercase letter");
       return;
     }
+
+    // create user in firebase
     createUserWithEmailAndPassword(auth, email, password)
       .then((result) => {
         setError("");
@@ -32,12 +39,19 @@ const SingUp = () => {
         setUser(loggedUser);
         event.target.reset();
         setSuccess("Your Account created successfully done !!");
+        verificationEmail(loggedUser);
       })
       .catch((error) => {
         setError(error.message);
       });
   };
 
+  const verificationEmail = (user) => {
+    sendEmailVerification(user).then((result) => {
+      console.log(user, result);
+      alert("please verify your email");
+    });
+  };
   console.log(user, error);
   //   const handleEmailChange = (event) => {
   //     setEmail(event.target.value);
@@ -79,6 +93,14 @@ const SingUp = () => {
           type="submit"
           value="register"
         ></input>
+        <p>
+          <small>
+            Already have an account? Please
+            <Link className="btn btn-outline" to="/login">
+              Login
+            </Link>
+          </small>
+        </p>
       </form>
     </div>
   );

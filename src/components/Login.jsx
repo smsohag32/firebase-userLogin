@@ -7,6 +7,7 @@ import {
   signInWithPopup,
 } from "firebase/auth";
 import app from "../Firebase/firebase.config";
+import { Link } from "react-router-dom";
 
 const auth = getAuth(app);
 
@@ -81,7 +82,19 @@ const Login = () => {
           placeholder="Your password"
           className="input input-bordered input-accent w-full max-w-xs"
         />
-        <button className="btn btn-primary w-full max-w-xs">Login</button>
+        <input
+          type="submit"
+          value="Login"
+          className="btn btn-primary  w-full max-w-xs"
+        />
+        <p>
+          <small>
+            New to this website? Please{" "}
+            <Link className="btn btn-outline" to="/singUp">
+              Register
+            </Link>
+          </small>
+        </p>
         <div className="flex justify-between gap-3">
           <div onClick={handleGoogleLogging} className="btn btn-outline">
             Login with Google
