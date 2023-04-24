@@ -37,3 +37,13 @@
 ## fire Base using to user authentication
 
 # field validation regular expression
+
+# note
+
+- event handler onChange and onClick.
+- onchange handle many time trigger korbay ... state use kore set kora hoy..
+- onblur handle baire click korle trigger korbay ...
+
+- form er vitor onsubmit korle submit button a click korley random ..
+
+- form submit always page reload kore ar jonno --- event.preventDefault() command use. value uses command const password = event.target.password.value
