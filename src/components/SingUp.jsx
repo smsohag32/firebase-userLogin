@@ -14,7 +14,7 @@ const SingUp = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
-
+  const [isShow, setIsShow] = useState(false);
   const handleSubmit = (event) => {
     // page refresh handle
     event.preventDefault();
@@ -80,7 +80,7 @@ const SingUp = () => {
           required
         />
         <input
-          type="password"
+          type={`${isShow ? "text" : "password"}`}
           name="password"
           placeholder="Your password"
           className="input input-bordered input-accent w-full max-w-xs"
@@ -93,6 +93,9 @@ const SingUp = () => {
           type="submit"
           value="register"
         ></input>
+        <button onClick={() => setIsShow(!isShow)} className="btn">
+          {isShow ? "Hide Password" : "Show Password"}
+        </button>
         <p>
           <small>
             Already have an account? Please
