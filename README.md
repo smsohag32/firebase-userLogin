@@ -47,3 +47,12 @@
 - form er vitor onsubmit korle submit button a click korley random ..
 
 - form submit always page reload kore ar jonno --- event.preventDefault() command use. value uses command const password = event.target.password.value
+
+- validation check for regular expression
+- login handle is not to use error handle in regEx
+- create user and then implements sing in
+- if user want to sing in page to register page use to link .
+- sendEmail Verification on firebase documentation ...
+- if user not verify his account add to condition in sing in page please verify your account.
+- reset password in firebase documentation. and using useRef
+- useRef er current er vitor value ta pawa jay - use ref diay input er value access kora jay. code in Login.jsx

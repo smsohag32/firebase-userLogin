@@ -29,6 +29,8 @@ const SingUp = () => {
     if (!/(?=.*?[A-Z])/.test(password)) {
       setError("please type one uppercase letter");
       return;
+    } else if (password.length < 6) {
+      setError("Password must be 6 carecters");
     }
 
     // create user in firebase
@@ -48,16 +50,11 @@ const SingUp = () => {
 
   const verificationEmail = (user) => {
     sendEmailVerification(user).then((result) => {
-      console.log(user, result);
+      console.log(result);
       alert("please verify your email");
     });
   };
-  console.log(user, error);
-  //   const handleEmailChange = (event) => {
-  //     setEmail(event.target.value);
-  //   };
 
-  //   const handlePassword = (event) => {};
   return (
     <div>
       <form
@@ -65,6 +62,9 @@ const SingUp = () => {
         className="flex flex-col min-h-[calc(100vh-160px)] items-center justify-center gap-3"
       >
         <h1>Please Register</h1>
+        <p>
+          <small className="text-red-500">{error}</small>
+        </p>
         <input
           type="text"
           name="name"
@@ -85,7 +85,7 @@ const SingUp = () => {
           placeholder="Your password"
           className="input input-bordered input-accent w-full max-w-xs"
         />
-        <p className="text-red-900">{error}</p>
+
         <p className="text-green-400">{success}</p>
 
         <input
